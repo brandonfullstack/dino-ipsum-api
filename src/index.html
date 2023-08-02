@@ -2,13 +2,22 @@
 <html lang="en-US">
 
 <head>
-  <title>Project Template</title>
+  <title>Dino Ipsum</title>
 </head>
 
 <body>
-  <h1>Project Template</h1>
-  <img src="./assets/images/stock-puppy-photo.jpg" alt="such a pup!">
-  <p id="dino-container"></p>
+  <div class="container">
+    <h1>Get Dino Ipsum!</h1>
+    <p>To get some dino ipsum, select how many words and paragraphs you want below:</p>
+    <form>
+      <label for="words">Enter # of desired words:</label>
+      <input id="words" type="text" name="words">
+      <label for="paragraphs">Enter # of desired paragraphs:</label>
+      <input id="paragraphs" type="text" name="paragraphs">
+      <button type="submit" class="btn-success" id="weatherLocation">Get Dino Ipsum</button>
+    </form>
+    <p id="dino-container"></p>
+  </div>
 </body>
 
 </html>
