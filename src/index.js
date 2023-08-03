@@ -3,26 +3,37 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
 
 function getDinos(words, paragraphs) {
-  let request = new XMLHttpRequest();
+  // let request = new XMLHttpRequest();
   const url = `https://dinoipsum.com/api/?format=json&paragraphs=${paragraphs}&words=${words}`;
+  
+  fetch(url)
+    .then(response => response.json())
+    .then(data => printElements(data))
+    .catch(err => console.log(err))
 
-  request.addEventListener("loadend", function () {
-    const response = JSON.parse(this.responseText);
-    console.log(response)
-    if (this.status === 200) {
-      printElements(response);
-    }
-  });
+  // request.addEventListener("loadend", function () {
+  //   const response = JSON.parse(this.responseText);
+  //   console.log(response)
+  //   if (this.status === 200) {
+  //     printElements(response);
+  //   }
+  // });
 
-  request.addEventListener("readystatechange", function () {
-    console.log(this.readyState);
-  });
+  // request.addEventListener("readystatechange", function () {
+  //   console.log(this.readyState);
+  // });
 
-  request.open("GET", url, true);
-  request.send();
+  // request.open("GET", url, true);
+  // request.send();
 }
 
 // UI Logic
+
+// {getDinos().map(dino => (
+//   <p>
+//     {dino}
+//   </p>
+// ))}
 
 function printElements(response) {
   const formattedResponse = response.map(array => array.join(", ")).join("<br><br>");
