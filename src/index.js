@@ -6,14 +6,15 @@ function getDinos(words, paragraphs) {
   let request = new XMLHttpRequest();
   const url = `https://dinoipsum.com/api/?format=json&paragraphs=${paragraphs}&words=${words}`;
 
-  request.addEventListener("loadend", function() {
+  request.addEventListener("loadend", function () {
     const response = JSON.parse(this.responseText);
+    console.log(response)
     if (this.status === 200) {
       printElements(response);
     }
   });
 
-  request.addEventListener("readystatechange", function() {
+  request.addEventListener("readystatechange", function () {
     console.log(this.readyState);
   });
 
@@ -24,7 +25,8 @@ function getDinos(words, paragraphs) {
 // UI Logic
 
 function printElements(response) {
-  document.querySelector('#dino-container').innerHTML = response;
+  const formattedResponse = response.map(array => array.join(", ")).join("<br><br>");
+  document.querySelector('#dino-container').innerHTML = formattedResponse;
 }
 
 function handleFormSubmission(event) {
@@ -36,6 +38,13 @@ function handleFormSubmission(event) {
   getDinos(words, paragraphs);
 }
 
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
   document.querySelector('form').addEventListener("submit", handleFormSubmission);
 });
+
+
+// [["Majungasaurus", "Suzhousaurus", "Eoabelisaurus", "Jeholosaurus"],
+// ["Coloradisaurus", "Notocolossus", "Parvicursor", "Huaxiaosaurus"],
+// ["Orosaurus", "Revueltosaurus", "Patagotitan", "Clarencea"], ["Troodon", "Laquintasaura", "Tichosteus", "Hulsanpes"],
+// ["Antetonitrus", "Horshamosaurus", "Udanoceratops", "Bradycneme"]
+// ]
